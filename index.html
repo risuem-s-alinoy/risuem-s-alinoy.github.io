@@ -1,10 +1,18 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
 <title>Рисуем с Алиной</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Видеоуроки рисования для детей 3–8 лет: ребёнок повторяет рисунок сам, от первой линии до раскраски.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Golos+Text:wght@400;500;600&family=Caveat:wght@600&display=swap">
 <style>
+html { color-scheme: light; -webkit-text-size-adjust: 100%; }
+body { margin: 0; }
+img { max-width: 100%; }
 /* Layout: a sketchbook — one narrow reading column, drawings pinned like paper cards, a butter-yellow marker stroke as the single accent gesture */
 :root {
   --paper: #f7f6ee;
@@ -24,21 +32,6 @@
   --step--1: .9rem; --step-0: 1.06rem; --step-1: 1.3rem; --step-2: 1.75rem; --step-3: clamp(2rem, 6vw, 3.4rem);
   --radius: 18px;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --paper: #1b211a; --paper-2: #222a21; --ink: #eef0e3; --ink-soft: #b5bfae;
-    --sage: #6f8a68; --sage-deep: #b9cfae; --butter: #e9c75e; --card: #283127; --line: #364135; --on-accent: #1b211a;
-    --grid: #2f392e; --chip-green: #33452f;
-  }
-}
-:root[data-theme="dark"] {
-  color-scheme: dark;
-  --paper: #1b211a; --paper-2: #222a21; --ink: #eef0e3; --ink-soft: #b5bfae;
-  --sage: #6f8a68; --sage-deep: #b9cfae; --butter: #e9c75e; --card: #283127; --line: #364135; --on-accent: #1b211a;
-  --grid: #2f392e; --chip-green: #33452f;
-}
-
 * { box-sizing: border-box; }
 body {
   background: var(--paper); color: var(--ink);
@@ -231,6 +224,8 @@ footer a { color: var(--ink); }
 }
 @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
 </style>
+</head>
+<body>
 
 <div class="wrap">
   <header class="top">
@@ -407,3 +402,5 @@ footer a { color: var(--ink); }
     </nav>
   </footer>
 </div>
+</body>
+</html>
