@@ -1,0 +1,409 @@
+<title>Рисуем с Алиной</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Видеоуроки рисования для детей 3–8 лет: ребёнок повторяет рисунок сам, от первой линии до раскраски.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Golos+Text:wght@400;500;600&family=Caveat:wght@600&display=swap">
+<style>
+/* Layout: a sketchbook — one narrow reading column, drawings pinned like paper cards, a butter-yellow marker stroke as the single accent gesture */
+:root {
+  --paper: #f7f6ee;
+  --paper-2: #eef0e3;
+  --ink: #2f3f2e;
+  --ink-soft: #5d6b5a;
+  --sage: #a3b899;
+  --sage-deep: #4a6348;
+  --butter: #f7d878;
+  --card: #ffffff;
+  --line: #dfe3d3;
+  --on-accent: #2f3f2e;
+  --grid: #e6efe9;
+  --chip-green: #dcebd3;
+  --font-display: "Montserrat", "Arial Black", system-ui, sans-serif;
+  --font-body: "Golos Text", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --step--1: .9rem; --step-0: 1.06rem; --step-1: 1.3rem; --step-2: 1.75rem; --step-3: clamp(2rem, 6vw, 3.4rem);
+  --radius: 18px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #1b211a; --paper-2: #222a21; --ink: #eef0e3; --ink-soft: #b5bfae;
+    --sage: #6f8a68; --sage-deep: #b9cfae; --butter: #e9c75e; --card: #283127; --line: #364135; --on-accent: #1b211a;
+    --grid: #2f392e; --chip-green: #33452f;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #1b211a; --paper-2: #222a21; --ink: #eef0e3; --ink-soft: #b5bfae;
+  --sage: #6f8a68; --sage-deep: #b9cfae; --butter: #e9c75e; --card: #283127; --line: #364135; --on-accent: #1b211a;
+  --grid: #2f392e; --chip-green: #33452f;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--paper); color: var(--ink);
+  font-family: var(--font-body); font-size: var(--step-0); line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 1040px; margin-inline: auto; }
+section { padding-block: clamp(48px, 8vw, 88px); }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 900; line-height: 1.08; text-wrap: balance; margin: 0; letter-spacing: -.01em; }
+h1 { font-size: var(--step-3); }
+h2 { font-size: var(--step-2); margin-bottom: 28px; }
+h3 { font-size: var(--step-1); font-weight: 800; }
+p { margin: 0; }
+.lead { font-size: var(--step-1); color: var(--ink-soft); max-width: 34ch; }
+.marker { background: linear-gradient(transparent 58%, var(--butter) 58%, var(--butter) 92%, transparent 92%); padding-inline: .08em; }
+.eyebrow { font-size: var(--step--1); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--sage-deep); }
+
+/* top bar */
+.top { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-block: 18px; }
+.brand { font-family: var(--font-display); font-weight: 900; font-size: 1.05rem; letter-spacing: .02em; color: var(--ink); text-decoration: none; }
+.brand span { color: var(--sage-deep); }
+
+/* buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5em;
+  background: var(--butter); color: var(--on-accent); text-decoration: none;
+  font-family: var(--font-display); font-weight: 800; font-size: 1.05rem;
+  padding: 16px 26px; border-radius: 999px; border: 2px solid var(--ink);
+  box-shadow: 0 4px 0 var(--ink); transition: transform .12s ease, box-shadow .12s ease;
+}
+.btn:hover { transform: translateY(2px); box-shadow: 0 2px 0 var(--ink); }
+.btn:focus-visible { outline: 3px solid var(--sage-deep); outline-offset: 4px; }
+.btn.small { padding: 10px 18px; font-size: .92rem; box-shadow: 0 3px 0 var(--ink); }
+.note { font-size: var(--step--1); color: var(--ink-soft); }
+
+/* hero */
+.hero { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(28px, 5vw, 64px); align-items: center; padding-block: 24px 64px; }
+.hero-text { display: flex; flex-direction: column; gap: 22px; align-items: flex-start; }
+.pill { border: 1.5px solid var(--ink); border-radius: 999px; padding: 8px 18px; font-weight: 600; font-size: .92rem; }
+.hero h1 { font-size: clamp(2.4rem, 6.4vw, 4.2rem); }
+.hero h1 .accent { color: var(--sage-deep); position: relative; display: inline-block; }
+.hero h1 .accent::after {
+  content: ""; position: absolute; left: -2%; right: -2%; bottom: -.08em; height: .2em; z-index: -1;
+  background: var(--butter); border-radius: 40% 60% 50% 50% / 60% 40% 60% 40%; transform: rotate(-1.2deg);
+}
+.hero .lead { max-width: 40ch; }
+.hero .lead b { color: var(--ink); font-weight: 600; }
+.pain-ticks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.pain-ticks li { padding-left: 32px; position: relative; }
+.pain-ticks li::before { content: ""; position: absolute; left: 4px; top: .3em; width: 8px; height: 15px; border-right: 3px solid var(--sage-deep); border-bottom: 3px solid var(--sage-deep); transform: rotate(40deg); }
+.hero-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; }
+.polaroid {
+  position: relative; justify-self: center; width: min(100%, 420px);
+  background: #fff; padding: 16px 16px 0; transform: rotate(2deg);
+  box-shadow: 0 22px 44px rgb(0 0 0 / .14), 0 2px 6px rgb(0 0 0 / .08);
+}
+.polaroid img { width: 100%; aspect-ratio: 9 / 10; object-fit: cover; object-position: center 20%; display: block; }
+.polaroid figcaption { font-family: "Caveat", "Segoe Print", cursive; font-size: 2rem; color: #2f3f2e; text-align: center; padding-block: 10px 14px; }
+.polaroid .tape-a, .polaroid .tape-b { position: absolute; width: 130px; height: 34px; opacity: .85; clip-path: polygon(3% 0, 100% 8%, 97% 100%, 0 90%); }
+.polaroid .tape-a { background: var(--butter); top: -14px; left: -30px; transform: rotate(-14deg); }
+.polaroid .tape-b { background: #bcd3e6; top: -10px; right: -34px; transform: rotate(16deg); }
+.polaroid svg { position: absolute; overflow: visible; }
+.polaroid .star { right: -34px; bottom: 70px; width: 64px; height: 64px; }
+.polaroid .curl { left: -70px; bottom: 20px; width: 100px; height: 50px; }
+
+/* pains */
+.pains { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.pain { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; display: flex; flex-direction: column; gap: 8px; }
+.pain b { font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; }
+.pain p { color: var(--ink-soft); }
+
+/* lesson example: a sheet of squared exercise-book paper */
+.lesson-head { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 44px; }
+.lesson-head h2 { margin: 0; font-size: clamp(1.9rem, 5.5vw, 3rem); }
+.lesson-head p { color: var(--ink-soft); font-size: var(--step-1); max-width: 40ch; }
+.sheet {
+  position: relative; max-width: 900px; margin-inline: auto;
+  background-color: var(--card);
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 22px 22px;
+  border: 1px solid var(--line); border-radius: 6px;
+  box-shadow: 0 18px 40px rgb(0 0 0 / .08);
+  padding: clamp(48px, 7vw, 64px) clamp(18px, 6vw, 60px) clamp(28px, 5vw, 48px);
+  display: flex; flex-direction: column; gap: 14px;
+}
+.tape {
+  position: absolute; top: -18px; left: 50%; transform: translateX(-50%) rotate(-2deg);
+  background: var(--butter); color: var(--on-accent); white-space: nowrap;
+  font-weight: 600; font-size: .82rem; letter-spacing: .06em; text-transform: uppercase;
+  padding: 11px 24px; clip-path: polygon(2% 0, 100% 6%, 98% 100%, 0 94%);
+}
+.sheet h3 { font-size: clamp(1.4rem, 4vw, 2rem); font-weight: 900; }
+.sheet > p { color: var(--ink-soft); max-width: 56ch; margin-bottom: 10px; }
+.srow {
+  display: grid; grid-template-columns: auto 1fr auto 1.15fr; align-items: center; gap: 14px 18px;
+  background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px 22px;
+}
+.chip { font-size: .85rem; font-weight: 600; padding: 5px 11px; border-radius: 8px; white-space: nowrap; }
+.chip.step { background: var(--chip-green); color: var(--sage-deep); }
+.chip.tag { background: var(--butter); color: var(--on-accent); margin-right: 6px; }
+.srow .arrow { color: var(--ink-soft); font-size: 1.2rem; }
+.srow .what { font-weight: 500; }
+.srow .why { color: var(--ink); line-height: 1.5; }
+@media (max-width: 700px) {
+  .srow { grid-template-columns: auto 1fr; }
+  .srow .arrow { display: none; }
+  .srow .why { grid-column: 1 / -1; }
+}
+
+/* gallery */
+.band { background: var(--paper-2); margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-inline: max(16px, env(safe-area-inset-left, 0px)); }
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; }
+.gallery figure { margin: 0; background: var(--card); padding: 8px 8px 10px; border-radius: 6px; box-shadow: 0 2px 10px rgb(0 0 0 / .08); display: flex; flex-direction: column; gap: 8px; }
+.gallery figure:nth-child(odd) { transform: rotate(-1.5deg); }
+.gallery figure:nth-child(even) { transform: rotate(1.2deg); }
+.gallery img { width: 100%; aspect-ratio: 480 / 589; object-fit: cover; border-radius: 3px; display: block; }
+.gallery figcaption { font-size: .88rem; text-align: center; color: var(--ink-soft); }
+
+/* course contents */
+.course { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(28px, 5vw, 56px); align-items: start; }
+.course-head { display: flex; flex-direction: column; gap: 14px; }
+.course-head h2 { margin: 0; font-size: clamp(1.9rem, 5.5vw, 3rem); }
+.course-head p { color: var(--ink-soft); font-size: var(--step-1); max-width: 34ch; }
+.course .polaroid { justify-self: start; width: min(100%, 360px); margin-top: 24px; transform: rotate(-1.5deg); }
+.course .polaroid img { aspect-ratio: 1 / 1; object-position: center 30%; }
+.course .polaroid figcaption { font-size: 1.7rem; text-align: left; padding-inline: 6px; }
+.topics { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.topic { --bg: #fde7a6; background: var(--bg); color: #2b2f3a; border-radius: 22px; padding: 24px 24px 28px; display: flex; flex-direction: column; gap: 8px; }
+.topic:nth-child(odd) { transform: rotate(-.6deg); }
+.topic:nth-child(even) { transform: translateY(28px) rotate(.5deg); }
+.topic .n { font-family: "Caveat", "Segoe Print", cursive; font-size: 2.6rem; line-height: 1; color: #3a3f55; }
+.topic h3 { font-size: 1.25rem; }
+.topic p { color: #4a4f5e; font-size: .98rem; }
+.t-yellow { --bg: #fde7a6; } .t-blue { --bg: #cfe2f6; } .t-pink { --bg: #f8d3dc; } .t-green { --bg: #d9ecd0; }
+@media (max-width: 800px) {
+  .course { grid-template-columns: 1fr; }
+  .topic:nth-child(even) { transform: rotate(.5deg); }
+}
+@media (max-width: 480px) { .topics { grid-template-columns: 1fr; } }
+
+/* who + inside */
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.box { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; display: flex; flex-direction: column; gap: 14px; }
+.ticks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.ticks li { padding-left: 30px; position: relative; }
+.ticks li::before { content: ""; position: absolute; left: 2px; top: .45em; width: 14px; height: 8px; border-left: 3px solid var(--sage-deep); border-bottom: 3px solid var(--sage-deep); transform: rotate(-45deg); }
+
+/* how to buy */
+.how { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.how div { border-top: 3px solid var(--ink); padding-top: 14px; display: flex; flex-direction: column; gap: 6px; }
+.how small { font-family: var(--font-display); font-weight: 900; font-size: 1.6rem; color: var(--sage-deep); }
+
+/* price */
+.price-card { background: var(--card); border: 2px solid var(--ink); border-radius: 26px; padding: clamp(24px, 5vw, 44px); display: grid; grid-template-columns: 1fr auto; gap: 24px 40px; align-items: center; }
+.price { font-family: var(--font-display); font-weight: 900; font-size: clamp(2.6rem, 8vw, 4rem); line-height: 1; font-variant-numeric: tabular-nums; }
+.bonus {
+  margin-top: 20px; display: flex; align-items: center; gap: 16px;
+  background: var(--butter); color: var(--on-accent); border: 2px dashed var(--on-accent);
+  border-radius: 16px; padding: 14px 20px; transform: rotate(-.6deg);
+}
+.bonus-plus { flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--on-accent); color: var(--butter); font-family: var(--font-display); font-weight: 900; font-size: 1.6rem; line-height: 1; }
+.bonus b { display: block; font-family: var(--font-display); font-weight: 900; font-size: 1.2rem; }
+.hl { background: var(--butter); color: var(--on-accent); font-weight: 700; padding: 2px 8px; border-radius: 6px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.price-side { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+
+/* faq */
+.faq { display: flex; flex-direction: column; gap: 10px; max-width: 760px; }
+details { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 4px 20px; }
+summary { cursor: pointer; font-weight: 600; padding-block: 14px; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; font-family: var(--font-display); font-weight: 900; color: var(--sage-deep); }
+details[open] summary::after { content: "–"; }
+summary:focus-visible { outline: 3px solid var(--sage-deep); outline-offset: 2px; border-radius: 6px; }
+details p { padding-bottom: 16px; color: var(--ink-soft); max-width: 62ch; }
+
+footer { border-top: 1px solid var(--line); padding-block: 28px 40px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; font-size: var(--step--1); color: var(--ink-soft); }
+footer nav { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+footer a { color: var(--ink); }
+
+@media (max-width: 800px) {
+  .hero { grid-template-columns: 1fr; }
+  .polaroid { order: -1; width: min(86%, 340px); margin-top: 16px; }
+  .polaroid .curl { display: none; }
+  .polaroid .star { right: -18px; }
+  .pains, .how { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: repeat(2, 1fr); }
+  .two { grid-template-columns: 1fr; }
+  .price-card { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#">РИСУЕМ <span>С АЛИНОЙ</span></a>
+    <a class="btn small" href="https://boosty.to/darkcox/bundle/cf7ac43a-c5f3-4558-bdab-1cb4e2690a69" target="_blank" rel="noopener">Купить курс</a>
+  </header>
+
+  <section class="hero" aria-labelledby="h1">
+    <div class="hero-text">
+      <span class="pill">Алина Соколова · уроки рисования для детей</span>
+      <h1 id="h1">Ребёнок рисует сам — <span class="accent">вы выдыхаете</span></h1>
+      <p class="lead">Видеоуроки рисования для детей 3–8 лет. Включили урок — малыш занят делом, а не мультиками. <span class="hl">Новые уроки добавляются без доплаты</span> — купили один раз — получаете всё, что выйдет дальше.</p>
+      <ul class="pain-ticks">
+        <li>Не знаете, чем занять ребёнка дома</li>
+        <li>Кружки дорогие и далеко</li>
+        <li>Хотите развивать творчество, но сами не умеете рисовать</li>
+      </ul>
+      <div class="hero-cta">
+        <a class="btn" href="https://boosty.to/darkcox/bundle/cf7ac43a-c5f3-4558-bdab-1cb4e2690a69" target="_blank" rel="noopener">Получить курс — 550 ₽</a>
+        <span class="note">Оплата картой или по СБП на Boosty</span>
+      </div>
+    </div>
+    <figure class="polaroid">
+      <span class="tape-a" aria-hidden="true"></span><span class="tape-b" aria-hidden="true"></span>
+      <img src="img/portrait.jpg" alt="Алина Соколова">
+      <figcaption>Алина, рисуем вместе</figcaption>
+      <svg class="star" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 5l7.6 17.4 18.9 1.6-14.4 12.5 4.4 18.5L32 45.2 15.5 55l4.4-18.5L5.5 24l18.9-1.6z" fill="none" stroke="#e8743b" stroke-width="3.5" stroke-linejoin="round"/></svg>
+      <svg class="curl" viewBox="0 0 100 50" aria-hidden="true"><path d="M4 44c14-2 24-10 30-22 4-8-6-14-12-6s4 18 18 16c14-2 30-14 56-14" fill="none" stroke="#7fa8d6" stroke-width="3.5" stroke-linecap="round"/></svg>
+    </figure>
+  </section>
+</div>
+
+<div class="wrap">
+  <section aria-labelledby="pains">
+    <h2 id="pains">Знакомо?</h2>
+    <div class="pains">
+      <div class="pain"><b>Ребёнок опять в телефоне</b><p>Хочется занять его чем-то полезным, но сил придумывать нет.</p></div>
+      <div class="pain"><b>«Мама, нарисуй мне…»</b><p>А вы сами не умеете рисовать и не знаете, с чего начать.</p></div>
+      <div class="pain"><b>Кружки дорогие и далеко</b><p>Возить три раза в неделю неудобно, а заниматься хочется уже сейчас.</p></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="lesson">
+    <div class="lesson-head">
+      <h2 id="lesson">Как проходит урок</h2>
+      <p>На видео рисунок появляется линия за линией, а ребёнок повторяет на своём листе</p>
+    </div>
+    <div class="sheet">
+      <span class="tape">Пример урока — «Мишка из восьмёрки»</span>
+      <h3>Мишка из цифры 8 за четыре шага</h3>
+      <p>Рисунок собирается из того, что ребёнок уже знает: цифры и кружочков. Уметь рисовать не нужно, достаточно повторять.</p>
+      <div class="srow"><span class="chip step">Шаг 1</span><span class="what">Пишем восьмёрку — голова и животик</span><span class="arrow" aria-hidden="true">→</span><span class="why"><span class="chip tag">Знакомо</span>Цифру 8 ребёнок уже видел, начинать не страшно</span></div>
+      <div class="srow"><span class="chip step">Шаг 2</span><span class="what">Добавляем круглые ушки и лапки</span><span class="arrow" aria-hidden="true">→</span><span class="why"><span class="chip tag">Просто</span>Только кружочки, их получится нарисовать с первого раза</span></div>
+      <div class="srow"><span class="chip step">Шаг 3</span><span class="what">Рисуем мордочку и глазки</span><span class="arrow" aria-hidden="true">→</span><span class="why"><span class="chip tag">Весело</span>Ребёнок сам решает, будет мишка улыбаться или удивляться</span></div>
+      <div class="srow"><span class="chip step">Шаг 4</span><span class="what">Раскрашиваем в любимый цвет</span><span class="arrow" aria-hidden="true">→</span><span class="why"><span class="chip tag">Готово</span>Рисунок, который ребёнок нарисовал сам — можно на холодильник</span></div>
+    </div>
+  </section>
+</div>
+
+<div class="band">
+  <div class="wrap">
+    <section aria-labelledby="gallery">
+      <h2 id="gallery">Что рисуют дети</h2>
+      <div class="gallery">
+        <figure><img src="img/bear.jpg" alt="" loading="lazy"><figcaption>Мишка из 8</figcaption></figure>
+        <figure><img src="img/dogfive.jpg" alt="" loading="lazy"><figcaption>Собачка из 5</figcaption></figure>
+        <figure><img src="img/flower.jpg" alt="" loading="lazy"><figcaption>Цветок из 1</figcaption></figure>
+        <figure><img src="img/puppy.jpg" alt="" loading="lazy"><figcaption>Щенок из 6</figcaption></figure>
+        <figure><img src="img/icecream.jpg" alt="" loading="lazy"><figcaption>Мороженое</figcaption></figure>
+        <figure><img src="img/bike.jpg" alt="" loading="lazy"><figcaption>Велосипед из М</figcaption></figure>
+        <figure><img src="img/rose.jpg" alt="" loading="lazy"><figcaption>Роза из S</figcaption></figure>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div class="wrap">
+  <section aria-labelledby="course">
+    <div class="course">
+      <div class="course-head">
+        <h2 id="course">Что в курсе рисования</h2>
+        <p>Больше 15 видеоуроков на 6 тем. Новые уроки добавляются без доплаты по мере выхода</p>
+        <figure class="polaroid">
+          <span class="tape-a" aria-hidden="true"></span>
+          <img src="img/step_12.jpg" alt="Мишка из кружочков, урок в процессе" loading="lazy">
+          <figcaption>Шаг 3. Мордочка и глазки</figcaption>
+        </figure>
+      </div>
+      <div class="topics">
+        <div class="topic t-yellow"><span class="n">1</span><h3>Рисуем животных</h3><p>Котик, собачка, зайчик, медведь — пошагово, от простых форм</p></div>
+        <div class="topic t-blue"><span class="n">2</span><h3>Транспорт и машины</h3><p>Паровозик, самолёт, грузовик — любимые темы мальчишек</p></div>
+        <div class="topic t-pink"><span class="n">3</span><h3>Сказочные персонажи</h3><p>Принцессы, драконы, феи — для детей с богатой фантазией</p></div>
+        <div class="topic t-green"><span class="n">4</span><h3>Природа и растения</h3><p>Цветы, деревья, облака, радуга — учимся наблюдать и рисовать</p></div>
+        <div class="topic t-yellow"><span class="n">5</span><h3>Праздники и открытки</h3><p>Как нарисовать подарок маме, торт, Деда Мороза</p></div>
+        <div class="topic t-blue"><span class="n">6</span><h3>Морские жители</h3><p>Рыбки, осьминог, черепаха — уроки для самых маленьких</p></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="wrap">
+  <section aria-labelledby="who">
+    <div class="two">
+      <div class="box">
+        <h3 id="who">Для кого</h3>
+        <ul class="ticks">
+          <li>Для детей 3–8 лет, даже если ребёнок ещё ни разу не рисовал</li>
+          <li>Для мам и пап, которые сами «не умеют рисовать»</li>
+          <li>Для бабушек, которым нужно спокойное занятие с внуками</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Что даёт рисование</h3>
+        <ul class="ticks">
+          <li>Мелкая моторика: рука готовится к письму</li>
+          <li>Цифры и буквы запоминаются через картинки</li>
+          <li>Ребёнок учится доводить дело до конца</li>
+          <li>Привычка рисовать вместо телефона</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="how">
+    <h2 id="how">Как получить курс</h2>
+    <div class="how">
+      <div><small>1</small><b>Нажмите «Получить курс»</b><p class="note">Откроется страница Алины на Boosty.</p></div>
+      <div><small>2</small><b>Оплатите картой или по СБП</b><p class="note">Boosty — российский сервис, оплата в рублях.</p></div>
+      <div><small>3</small><b>Уроки откроются сразу</b><p class="note">Смотрите с телефона, планшета или компьютера.</p></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="price">
+    <div class="price-card">
+      <div>
+        <p class="eyebrow">Видеокурс «Рисуем с Алиной»</p>
+        <h2 id="price" style="margin:10px 0 14px">15+ видеоуроков</h2>
+        <ul class="ticks">
+          <li>6 тем: животные, транспорт, сказки, природа, праздники, море</li>
+          <li>Рисунки из простых фигур, цифр и букв</li>
+          <li>От первой линии до раскраски, в темпе ребёнка</li>
+          <li>Нужны только бумага и фломастеры</li>
+        </ul>
+        <div class="bonus"><span class="bonus-plus" aria-hidden="true">+</span><p><b>Новые уроки — без доплаты</b>Купили один раз — и все уроки, которые выйдут дальше, откроются вам бесплатно.</p></div>
+      </div>
+      <div class="price-side">
+        <div class="price">550 ₽</div>
+        <a class="btn" href="https://boosty.to/darkcox/bundle/cf7ac43a-c5f3-4558-bdab-1cb4e2690a69" target="_blank" rel="noopener">Получить курс</a>
+        <span class="note">Оплата один раз</span>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="faq">
+    <h2 id="faq">Частые вопросы</h2>
+    <div class="faq">
+      <details><summary>С какого возраста подходит?</summary><p>С 3 лет. Малыши рисуют вместе с родителями, дети постарше справляются сами.</p></details>
+      <details><summary>Я совсем не умею рисовать. Получится?</summary><p>Да. Каждый рисунок разбит на простые шаги: круг, цифра, буква. Нужно просто повторять за видео.</p></details>
+      <details><summary>Что понадобится?</summary><p>Бумага, простой карандаш и фломастеры или цветные карандаши.</p></details>
+      <details><summary>Как я получу уроки после оплаты?</summary><p>Курс находится на Boosty. После оплаты уроки открываются сразу в вашем аккаунте Boosty, смотреть можно с любого устройства.</p></details>
+      <details><summary>Нужно ли платить за новые уроки?</summary><p>Нет. Вы платите один раз, а все новые уроки, которые выходят в курсе, открываются вам без доплаты.</p></details>
+      <details><summary>Какие способы оплаты?</summary><p>Банковские карты и СБП. Оплата проходит на стороне Boosty.</p></details>
+      <details><summary>Есть ли бесплатные рисунки?</summary><p>Да, короткие уроки выходят каждый день в Instagram и на YouTube. Посмотрите, подойдёт ли формат вашему ребёнку.</p></details>
+    </div>
+  </section>
+
+  <footer>
+    <span>Рисуем с Алиной · 2026</span>
+    <nav>
+      <a href="https://www.instagram.com/sokolova.aalina/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.youtube.com/channel/UCe90dJcetEVHRBneJ6aNHOg" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://boosty.to/darkcox" target="_blank" rel="noopener">Boosty</a>
+      <a href="https://romandarkcox-hue.github.io/alina-privacy/" target="_blank" rel="noopener">Политика конфиденциальности</a>
+    </nav>
+  </footer>
+</div>
